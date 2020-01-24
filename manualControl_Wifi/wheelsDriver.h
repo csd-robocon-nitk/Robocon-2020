@@ -46,14 +46,41 @@ void set_motor(int index, int motor_speed)
   analogWrite(motor_pin[index], abs((int)(motor_speed/4)));
 }
 
-
-// forwardV   - (+ + + +) all positive
+#ifdef MECANUM_WHEELS
+// Use this matrix in case of mecanum wheels
+// Assuming the configuration is similar to
+// https://www.youtube.com/watch?v=T1VZbFio5_E
+//
+// Assuming applying positive to motor rotates
+// wheel in forward direction (w.r.t Bot)
+//
+// forwardV   - (+ + + +)
 // rightV     - (+ - + -)
 // rotClkwise - (+ - - +)
 const int JmulMat[4][] = { {+3, +3, +2},
                            {+3, -3, -2},
                            {+3, +3, -2},
                            {+3, -3, +2}  };
+#elif defined OMNI_WHEELS
+// Use this matrix in case of omni wheels
+// Assuming the configuration is similar to
+// https://www.youtube.com/watch?v=5vJCucpVdX0
+//
+// Assuming applying positive to motor rotates
+// wheel clockwise (as seen from top view of Bot)
+//
+// forwardV   - (+ - - +)
+// rightV     - (+ + - -)
+// rotClkwise - (+ + + +)
+const int JmulMat[4][] = { {+3, +3, +2},
+                           {-3, +3, +2},
+                           {-3, -3, +2},
+                           {+3, -3, +2}  };
+#else
+// A wheel type has not been defined before
+// including this file.
+#error Wheel type not defined.
+#endif
 
 void motors(int forwardV, int rightV, int rotClkwise)
 {
