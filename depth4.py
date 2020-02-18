@@ -77,12 +77,12 @@ if __name__ == "__main__":
         elif(depth[i][240]-depth[i+1]<50):
             b2=i
     b3=(b1+b2)/2
-	print(depth[320][240])
-	#print(depth.shape)
-	#print(pixels)
-	temp_surface = pygame.Surface(disp_size)
-        pygame.surfarray.blit_array(temp_surface, pixels)
-        pygame.transform.scale(temp_surface, disp_size, screen)
-        screen.blit(font.render(fps_text, 1, (255, 255, 255)), (30, 30))
-        pygame.display.flip()
-        fpsClock.tick(FPS)
+    print(depth[320][240])
+    #print(depth.shape)
+    #print(pixels)
+    temp_surface = pygame.Surface(disp_size)
+    pygame.surfarray.blit_array(temp_surface, pixels)
+    pygame.transform.scale(temp_surface, disp_size, screen)
+    screen.blit(font.render(fps_text, 1, (255, 255, 255)), (30, 30))
+    pygame.display.flip()
+    fpsClock.tick(FPS)
