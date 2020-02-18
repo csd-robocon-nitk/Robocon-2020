@@ -77,7 +77,7 @@ if __name__ == "__main__":
         elif(depth[i][240]-depth[i+1]<50):
             b2=i
     b3=(b1+b2)/2
-    print(depth[320][240])
+    print(depth[b3][240])
     #print(depth.shape)
     #print(pixels)
     temp_surface = pygame.Surface(disp_size)
